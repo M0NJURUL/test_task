@@ -14,10 +14,10 @@ Feature: Steam Community Market item search
     And I select rarity "Rare"
     When I click on "Search"
     Then Table with results is loaded
-    And Correct tags "Dota 2", "Phantom Assassin", and "Rare" in "Showing results for" are displayed    
+    And Correct tags "Dota 2, Phantom Assassin, Rare" in "Showing results for" are displayed    
     When I click first item
     Then Item page is opened
-    And Item info "Dota 2", "Phantom Assassin", and "Rare" is correct for selected filters
+    And Item info "Dota 2, Phantom Assassin, Rare" is correct for selected filters
 
   Scenario: Sort prices and validate order
     When I select game "Dota 2"
@@ -25,7 +25,7 @@ Feature: Steam Community Market item search
     And I select rarity "Uncommon"
     When I click on "Search"
     Then Table with results is loaded
-    And Correct tags "Dota 2", "Anti-Mage", and "Uncommon" in "Showing results for" are displayed
+    And Correct tags "Dota 2, Phantom Assassin, Rare" in "Showing results for" are displayed    
     When I sort price by ascending order
     Then Prices are sorted in correct order "ascending"
     When I sort price by descending order

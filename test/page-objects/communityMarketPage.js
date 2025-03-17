@@ -54,11 +54,12 @@ class CommunityMarketPage extends BasePage {
         return (await this.tableWithResults.state().isDisplayed());
     }
 
-    async areCorrectTagsDisplayed(game, hero, rarity) {
+    async areCorrectTagsDisplayed(tags) {
         const gameNameTagText = (await this.gameNameTag.getText()).trim();
         const heroTagText = (await this.heroTag.getText()).trim();
         const rarityTagText = (await this.rarityTag.getText()).trim();
-        return gameNameTagText === game && heroTagText === hero && rarityTagText === rarity;
+        const tagTexts = [gameNameTagText, heroTagText, rarityTagText];
+        return tags.every((tag, index) => tagTexts[index] === tag);
     }
 
     async clickFirstItem() {

@@ -51,8 +51,9 @@ Then(/^Table with results is loaded$/, async() => {
     assert.isTrue(await CommunityMarketPage.isTableWithResultsDisplayed(), 'Table with results is not loaded');
 })
 
-Then(/^Correct tags "(.*)", "(.*)", and "(.*)" in "Showing results for" are displayed$/, async(game, hero, rarity) => {
-    assert.isTrue(await CommunityMarketPage.areCorrectTagsDisplayed(game, hero, rarity), 'Correct tags in "Showing results for" are not displayed');
+Then(/^Correct tags "(.*)" in "Showing results for" are displayed$/, async(tags) => {
+    const tagArray = tags.split(',').map(tag => tag.trim());
+    assert.isTrue(await CommunityMarketPage.areCorrectTagsDisplayed(tagArray), 'Correct tags in "Showing results for" are not displayed');
 });
 
 When(/^I click first item$/, async() => {
@@ -63,8 +64,9 @@ Then(/^Item page is opened$/, async() => {
     assert.isTrue(await ItemPage.isPageOpened(), 'Item page is not opened')
 });
 
-Then(/^Item info "(.*)", "(.*)", and "(.*)" is correct for selected filters$/, async(game, hero, rarity) => {
-    assert.isTrue(await ItemPage.isItemInfoCorrectForSelectedFilters(game, hero, rarity), 'Item info is not correct for selected filters')
+Then(/^Item info "(.*)" is correct for selected filters$/, async(tags) => {
+    const tagArray = tags.split(',').map(tag => tag.trim());
+    assert.isTrue(await ItemPage.isItemInfoCorrectForSelectedFilters(tagArray), 'Item info is not correct for selected filters')
 });
 
 When(/^I sort price by (.*) order$/, async(order) => {

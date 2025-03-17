@@ -10,11 +10,12 @@ class ItemPage extends BasePage {
         this.rarityInfo = new Label('//*[contains(@id, "info_item_type")]', 'Rarity Info Label');
     }
 
-    async isItemInfoCorrectForSelectedFilters(game, hero, rarity) {
+    async isItemInfoCorrectForSelectedFilters(tags) {
         const gameText = await this.gameNameInfo.getText();
         const heroText = await this.heroInfo.getText();
         const rarityText = await this.rarityInfo.getText();
-        return gameText.includes(game) && heroText.includes(hero) && rarityText.includes(rarity);
+        const infoTexts = [gameText, heroText, rarityText];
+        return tags.every((tag, index) => infoTexts[index].includes(tag));
     }  
 }   
 
