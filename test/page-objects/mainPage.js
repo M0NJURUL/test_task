@@ -1,7 +1,7 @@
 import BasePage from '../../framework/page/BasePage.js'
-import { Label, Button } from '../../framework/elements/index.js'
+import { Label } from '../../framework/elements/index.js'
 
-class mainPage extends BasePage {
+class MainPage extends BasePage {
     constructor() {
         super(new Label('//div[contains(@class, "home_featured")]', 'Home Featured Games'), 'Main Page');
         
@@ -15,4 +15,4 @@ class mainPage extends BasePage {
     }
 }
 
-export default new mainPage();
+export default new MainPage();

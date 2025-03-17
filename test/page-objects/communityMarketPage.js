@@ -1,7 +1,8 @@
 import BasePage from '../../framework/page/BasePage.js'
 import { Label, Button, Dropdown, Checkbox, Table } from '../../framework/elements/index.js'
+import Browser from '../../framework/browser/Browser.js';
 
-class communityMarketPage extends BasePage {
+class CommunityMarketPage extends BasePage {
     constructor() {
         super(new Label('//*[@class = "market_title_text"]', 'Community Market Title'), 'Community Market Page');
         
@@ -68,31 +69,25 @@ class communityMarketPage extends BasePage {
         const isAscending = this.clickCount % 2 === 1;
         const isDescending = this.clickCount % 2 === 0;
         if ((order === 'ascending' && !isAscending) || (order === 'descending' && !isDescending)) {
-            // await this.sortPrice.click();
             await browser.$(this.sortPrice.locator).click();
             this.clickCount++;
         }
     }
     
     async isPriceSortedInCorrectOrder(order = 'ascending') {
-        await browser.pause(3000);
-        // const priceElements = await this.normalPrice.findAll();
+        await Browser.waitForDelay(3000);
         let priceElements = await $$(this.normalPrice.locator);
         let prices = [];
         for (const element of priceElements) {
             prices.push(await element.getText());
         } 
-        // prices = prices.slice(0, 3); // uncomment to check first 3 items and overlook the bug
         let numericPrices = prices.map(price => parseFloat(price.replace('$', '').replace('USD', '').trim()));
-        // console.log(numericPrices);
         let correctness = numericPrices.every((price, index, arr) => {
             if (index === 0) return true;
             if (order === 'ascending') {
-                // console.log(price, "(>=)", arr[index-1]);
                 return price >= arr[index - 1]; 
             } 
             else {
-                // console.log(price, "(<=)", arr[index-1]);
                 return price <= arr[index - 1]; 
             }
         });
@@ -100,4 +95,4 @@ class communityMarketPage extends BasePage {
     }  
 }
 
-export default new communityMarketPage();
+export default new CommunityMarketPage();

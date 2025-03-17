@@ -1,7 +1,7 @@
 import BasePage from '../../framework/page/BasePage.js'
 import { Label } from '../../framework/elements/index.js'
 
-class itemPage extends BasePage {
+class ItemPage extends BasePage {
     constructor() {
         super(new Label('//*[@id = "largeiteminfo_warning"]', 'Item Info Warning'), 'Item Page');
         
@@ -18,4 +18,4 @@ class itemPage extends BasePage {
     }  
 }   
 
-export default new itemPage();
+export default new ItemPage();
