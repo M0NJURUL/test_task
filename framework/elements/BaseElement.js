@@ -215,4 +215,9 @@ export default class BaseElement {
         Logger.info(`Received html: "${html}"`);
         return html;
     }
+    
+    async getAllElements() {
+        await this.state().waitForExist();
+        return this._get$().$$();
+    }
 }
